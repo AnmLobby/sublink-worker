@@ -77,12 +77,14 @@ export class ClashConfigBuilder extends BaseConfigBuilder {
     formatConfig() {
         const rules = generateRules(this.selectedRules, this.customRules);
 
-        this.config.rules = rules.flatMap(rule => {
-            const siteRules = rule.site_rules[0] !== '' ? rule.site_rules.map(site => `GEOSITE,${site},${rule.outbound}`) : [];
-            const ipRules = rule.ip_rules[0] !== '' ? rule.ip_rules.map(ip => `GEOIP,${ip},${rule.outbound}`) : [];
-            const domainSuffixRules = rule.domain_suffix ? rule.domain_suffix.map(suffix => `DOMAIN-SUFFIX,${suffix},${rule.outbound}`) : [];
-            const ipCidrRules = rule.ip_cidr ? rule.ip_cidr.map(cidr => `IP-CIDR,${cidr},${rule.outbound}`) : [];        //     return [...siteRules, ...ipRules, ...domainSuffixRules, ...ipCidrRules];
-        });
+        this.config.rules.push('MATCH,🚀 节点选择');
+
+        // this.config.rules = rules.flatMap(rule => {
+        //     const siteRules = rule.site_rules[0] !== '' ? rule.site_rules.map(site => `GEOSITE,${site},${rule.outbound}`) : [];
+        //     const ipRules = rule.ip_rules[0] !== '' ? rule.ip_rules.map(ip => `GEOIP,${ip},${rule.outbound}`) : [];
+        //     const domainSuffixRules = rule.domain_suffix ? rule.domain_suffix.map(suffix => `DOMAIN-SUFFIX,${suffix},${rule.outbound}`) : [];
+        //     const ipCidrRules = rule.ip_cidr ? rule.ip_cidr.map(cidr => `IP-CIDR,${cidr},${rule.outbound}`) : [];        //     return [...siteRules, ...ipRules, ...domainSuffixRules, ...ipCidrRules];
+        // });
 
         // Add the final catch-all rule
         // this.config.rules.push('MATCH,🐟 漏网之鱼');
